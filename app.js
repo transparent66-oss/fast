@@ -5,6 +5,69 @@
   let score = 0;
   let answers = [];
   let answered = false;
+  let secondsLeft = 20;
+  let timerInterval = null;
+  let audioContext = null;
+
+  function startSoundEngine() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    if (!audioContext) audioContext = new AudioContextClass();
+    if (audioContext.state === 'suspended') audioContext.resume();
+  }
+
+  function playTone(frequency, startAt, duration, type = 'square', volume = 0.045) {
+    if (!audioContext) return;
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, startAt);
+    gain.gain.setValueAtTime(0.0001, startAt);
+    gain.gain.exponentialRampToValueAtTime(volume, startAt + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startAt + duration);
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+    oscillator.start(startAt);
+    oscillator.stop(startAt + duration + 0.02);
+  }
+
+  function playAnswerSound(isCorrect) {
+    startSoundEngine();
+    if (!audioContext) return;
+    const now = audioContext.currentTime;
+    if (isCorrect) {
+      playTone(660, now, 0.12);
+      playTone(880, now + 0.105, 0.18);
+      playTone(1100, now + 0.235, 0.2);
+    } else {
+      playTone(330, now, 0.16, 'square', 0.04);
+      playTone(220, now + 0.15, 0.24, 'square', 0.04);
+    }
+  }
+
+  function stopTimer() {
+    if (timerInterval !== null) {
+      window.clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function startTimer() {
+    stopTimer();
+    secondsLeft = 20;
+    updateTimerDisplay();
+    timerInterval = window.setInterval(() => {
+      secondsLeft -= 1;
+      updateTimerDisplay();
+      if (secondsLeft <= 0) resolveAnswer(null, true);
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    $('countdown').textContent = String(secondsLeft).padStart(2, '0');
+    $('timer-fill').style.width = `${Math.max(0, secondsLeft / 20 * 100)}%`;
+    $('countdown').classList.toggle('timer-low', secondsLeft <= 5);
+  }
 
   function showScreen(target) {
     screens.forEach((screen) => { screen.hidden = screen !== target; });
@@ -12,6 +75,7 @@
   }
 
   function startGame() {
+    startSoundEngine();
     questionIndex = 0;
     score = 0;
     answers = [];
@@ -30,6 +94,7 @@
     $('progress-fill').style.width = `${(number / window.quizQuestions.length) * 100}%`;
     document.querySelector('.progress-track').setAttribute('aria-valuenow', String(number));
     $('feedback').hidden = true;
+    $('feedback').classList.remove('feedback-timeout');
     const choices = $('choices');
     choices.replaceChildren();
     question.choices.forEach((choice, index) => {
@@ -42,27 +107,35 @@
       choices.append(button);
     });
     $('next-button').textContent = questionIndex === window.quizQuestions.length - 1 ? '結果を見る　→' : '次の問題へ　→';
+    startTimer();
   }
 
   function selectAnswer(selectedIndex) {
+    resolveAnswer(selectedIndex, false);
+  }
+
+  function resolveAnswer(selectedIndex, timedOut) {
     if (answered) return;
     answered = true;
+    stopTimer();
     const question = window.quizQuestions[questionIndex];
     const isCorrect = selectedIndex === question.answer;
     if (isCorrect) score++;
-    answers.push(question.choices[selectedIndex].category);
+    if (!timedOut) answers.push(question.choices[selectedIndex].category);
     [...$('choices').children].forEach((button, index) => {
       button.disabled = true;
       if (index === question.answer) button.classList.add('is-correct');
-      else if (index === selectedIndex) button.classList.add('is-selected-wrong');
+      else if (index === selectedIndex && selectedIndex !== null) button.classList.add('is-selected-wrong');
     });
-    const picked = question.choices[selectedIndex];
-    $('feedback-status').textContent = isCorrect ? 'その通り！' : '考え方をチェック';
+    const picked = timedOut ? question.choices[question.answer] : question.choices[selectedIndex];
+    $('feedback-status').textContent = timedOut ? '時間切れ！' : isCorrect ? 'その通り！' : '考え方をチェック';
     $('feedback-status').className = isCorrect ? 'status-correct' : 'status-review';
-    $('feedback-note').textContent = isCorrect ? 'BEST CHOICE' : 'LEARN THE POINT';
-    $('answer-feedback').textContent = picked.feedback;
-    $('explanation-text').textContent = picked.explanation;
+    $('feedback-note').textContent = timedOut ? 'TIME UP' : isCorrect ? 'BEST CHOICE' : 'LEARN THE POINT';
+    $('answer-feedback').textContent = timedOut ? `時間内に選べませんでした。正解は「${picked.text}」です。` : picked.feedback;
+    $('explanation-text').textContent = timedOut ? `あせらず次へ進みましょう。${picked.explanation}` : picked.explanation;
+    $('feedback').classList.toggle('feedback-timeout', timedOut);
     $('feedback').hidden = false;
+    playAnswerSound(isCorrect);
     $('next-button').focus({ preventScroll: true });
   }
 
@@ -85,7 +158,10 @@
       '業態・ブランドで判断': 'お店やブランドが気になるタイプ。看板に加えて、具体的な施工内容を聞くと判断が深まります。',
       '手入れ・保証を軽視': '施工後のケアは見落としやすいポイント。保証書や洗車方法もチェックしてみましょう。'
     };
-    $('tendency-text').textContent = `${descriptions[top]}（今回の回答 ${count}/10）`;
+    const timeoutCount = window.quizQuestions.length - answers.length;
+    $('tendency-text').textContent = answers.length
+      ? `${descriptions[top]}（回答した問題 ${answers.length}/10${timeoutCount ? `・時間切れ ${timeoutCount}問` : ''}）`
+      : '今回は時間内に選べた問題がありませんでした。もう一度ゆっくり挑戦してみましょう。';
     showScreen($('result-screen'));
   }
 

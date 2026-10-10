@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080909">
+  <meta name="theme-color" content="#10182d">
   <meta name="description" content="愛車に合うコーティング選びを、10問のクイズで学ぶゲーム。">
   <title>コーティング選びの正解 | WHITE HOUSE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,8 +37,12 @@
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="art-glow"></div><div class="art-ring ring-a"></div><div class="art-ring ring-b"></div>
-        <div class="car-illustration"><div class="car-top"></div><div class="car-body"></div><div class="car-glass"></div><div class="car-shine"></div><div class="wheel wheel-left"></div><div class="wheel wheel-right"></div></div>
-        <div class="art-caption"><span>PAINT CARE</span><span>EST. FOR YOUR DRIVE</span></div>
+        <div class="pixel-scene">
+          <span class="pixel-star star-one">✦</span><span class="pixel-star star-two">✦</span>
+          <div class="car-illustration"><div class="car-top"></div><div class="car-body"></div><div class="car-glass"></div><div class="car-shine"></div><div class="wheel wheel-left"></div><div class="wheel wheel-right"></div></div>
+          <div class="pixel-ground"></div>
+        </div>
+        <div class="art-caption"><span>PAINT CARE</span><span>8-BIT GARAGE</span></div>
       </div>
     </section>
 
@@ -46,13 +50,14 @@
       <div class="quiz-topline"><span id="stage-label" class="eyebrow">STAGE 01 <span class="eyebrow-jp">ディーラーコーティング</span></span><span id="question-count" class="question-count">01 <small>/ 10</small></span></div>
       <div class="progress-track" role="progressbar" aria-label="クイズの進行状況" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><span id="progress-fill"></span></div>
       <div class="question-card">
+        <div class="timer-panel" aria-label="回答までの残り時間"><span class="timer-label">のこり時間</span><span id="countdown" class="countdown" aria-live="off">20</span><span class="timer-unit">びょう</span><div class="timer-track"><span id="timer-fill"></span></div></div>
         <p id="scenario" class="scenario"></p>
         <h2 id="question-title" class="question-title"></h2>
         <div id="choices" class="choices"></div>
         <div id="feedback" class="feedback" hidden>
           <div class="feedback-heading"><span id="feedback-status"></span><span id="feedback-note"></span></div>
           <p id="answer-feedback" class="answer-feedback"></p>
-          <div class="explanation"><span class="explanation-label">LEARN MORE</span><p id="explanation-text"></p></div>
+          <div class="explanation"><span class="explanation-label">おぼえておこう</span><p id="explanation-text"></p></div>
           <button id="next-button" class="button button-primary next-button">次の問題へ <span aria-hidden="true">→</span></button>
         </div>
       </div>
