@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080909">
+  <meta name="description" content="愛車に合うコーティング選びを、10問のクイズで学ぶゲーム。">
+  <title>コーティング選びの正解 | WHITE HOUSE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="questions.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <main class="shell">
+    <header class="masthead">
+      <a class="brand" href="#top" aria-label="WHITE HOUSE トップ">
+        <span class="brand-mark" aria-hidden="true">W</span>
+        <span class="brand-name">WHITE HOUSE<small>CAR CARE • KNOWLEDGE</small></span>
+      </a>
+      <span class="edition">SPECIAL EDITION <i></i> VOL. 01</span>
+    </header>
+
+    <section id="start-screen" class="screen hero" aria-labelledby="game-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> YOUR CAR, YOUR RIGHT CHOICE</p>
+        <h1 id="game-title">コーティング選びの<span>正解</span></h1>
+        <p class="hero-lead">そのコーティング、本当にあなたの車に合っていますか？</p>
+        <p class="hero-description">駐車環境、塗装の状態、日々のお手入れ。<br>10のシーンを通して、自分に合う選び方を見つけよう。</p>
+        <div class="hero-meta"><span>全10問</span><b></b><span>約3〜5分</span><b></b><span>4択クイズ</span></div>
+        <button id="start-button" class="button button-primary">ゲームをはじめる <span aria-hidden="true">↗</span></button>
+        <p class="fine-print">正解を覚えるより、選ぶ理由を考えてみましょう。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div><div class="art-ring ring-a"></div><div class="art-ring ring-b"></div>
+        <div class="car-illustration"><div class="car-top"></div><div class="car-body"></div><div class="car-glass"></div><div class="car-shine"></div><div class="wheel wheel-left"></div><div class="wheel wheel-right"></div></div>
+        <div class="art-caption"><span>PAINT CARE</span><span>EST. FOR YOUR DRIVE</span></div>
+      </div>
+    </section>
+
+    <section id="quiz-screen" class="screen quiz-screen" aria-live="polite" hidden>
+      <div class="quiz-topline"><span id="stage-label" class="eyebrow">STAGE 01 <span class="eyebrow-jp">ディーラーコーティング</span></span><span id="question-count" class="question-count">01 <small>/ 10</small></span></div>
+      <div class="progress-track" role="progressbar" aria-label="クイズの進行状況" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><span id="progress-fill"></span></div>
+      <div class="question-card">
+        <p id="scenario" class="scenario"></p>
+        <h2 id="question-title" class="question-title"></h2>
+        <div id="choices" class="choices"></div>
+        <div id="feedback" class="feedback" hidden>
+          <div class="feedback-heading"><span id="feedback-status"></span><span id="feedback-note"></span></div>
+          <p id="answer-feedback" class="answer-feedback"></p>
+          <div class="explanation"><span class="explanation-label">LEARN MORE</span><p id="explanation-text"></p></div>
+          <button id="next-button" class="button button-primary next-button">次の問題へ <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="quiz-footer"><span>WHITE HOUSE <i>·</i> COATING GUIDE</span><span>自分のペースで考えてみよう</span></div>
+    </section>
+
+    <section id="result-screen" class="screen result-screen" aria-labelledby="result-heading" hidden>
+      <p class="eyebrow"><span></span> YOUR COATING IQ</p>
+      <h2 id="result-heading">QUIZ <span>COMPLETE</span></h2>
+      <div class="result-main">
+        <div class="score-wrap"><span class="score-label">YOUR SCORE</span><div class="score"><span id="score-value">0</span><small>/ 10</small></div><span id="rank-name" class="rank-name"></span></div>
+        <div class="result-message"><p id="rank-description"></p><div class="result-divider"></div><span class="summary-label">あなたの回答傾向</span><p id="tendency-text" class="tendency-text"></p></div>
+      </div>
+      <div class="takeaways"><span class="explanation-label">TAKEAWAY</span><p>コーティングは「どこで・何を」だけでなく、<strong>なぜ必要か、どう維持するか</strong>まで考えると選びやすくなります。</p></div>
+      <button id="replay-button" class="button button-primary">もう一度プレイ <span aria-hidden="true">↻</span></button>
+      <p class="disclaimer">本ゲームは一般的な選び方の学習を目的としています。車種・塗装状態・製品・施工条件により結果は異なります。具体的な性能や保証条件は、各メーカーの最新資料と施工店にご確認ください。</p>
+    </section>
+
+    <footer class="site-footer"><span>© WHITE HOUSE</span><span>KNOW YOUR CAR. CHOOSE WITH CARE.</span></footer>
+  </main>
+</body>
+</html>
