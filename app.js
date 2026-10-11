@@ -8,6 +8,26 @@
   let secondsLeft = 20;
   let timerInterval = null;
   let audioContext = null;
+  const bgm = $('quiz-bgm');
+  const whoosh = $('question-whoosh');
+
+  // Keep the soundtrack subtle while the quiz is active.
+  bgm.volume = 0.16;
+  whoosh.volume = 0.48;
+
+  function playQuestionWhoosh() {
+    whoosh.pause();
+    whoosh.currentTime = 0;
+    const playback = whoosh.play();
+    if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+  }
+
+  function stopQuizAudio() {
+    bgm.pause();
+    bgm.currentTime = 0;
+    whoosh.pause();
+    whoosh.currentTime = 0;
+  }
 
   function startSoundEngine() {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -76,6 +96,9 @@
 
   function startGame() {
     startSoundEngine();
+    bgm.currentTime = 0;
+    const playback = bgm.play();
+    if (playback && typeof playback.catch === 'function') playback.catch(() => {});
     questionIndex = 0;
     score = 0;
     answers = [];
@@ -107,6 +130,7 @@
       choices.append(button);
     });
     $('next-button').textContent = questionIndex === window.quizQuestions.length - 1 ? '結果を見る　→' : '次の問題へ　→';
+    playQuestionWhoosh();
     startTimer();
   }
 
@@ -140,6 +164,7 @@
   }
 
   function finishGame() {
+    stopQuizAudio();
     $('score-value').textContent = String(score);
     const ranks = [
       { min: 9, name: 'コーティング・マスター', description: '選び方のポイントをしっかり押さえています。自分の使い方に合わせた判断ができています。' },
