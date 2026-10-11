@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090a0b">
+  <meta name="description" content="HENRY GAMES — HENRYが届ける、車とディテーリングのゲーム。">
+  <title>HENRY GAMES</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090a0b;--panel:#141618;--line:#33312d;--text:#f0ede6;--muted:#a7a39c;--amber:#d49a52}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 2%,#252322 0,#111213 34rem,var(--bg) 72rem);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;min-height:100vh}
+    a{color:inherit}.wrap{max-width:1100px;margin:auto;padding:0 22px}header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}.wordmark{font-size:14px;letter-spacing:.28em;font-weight:800;text-decoration:none}.wordmark span{color:var(--amber)}.nav{display:flex;gap:22px;font-size:12px;color:#d0ccc4}.nav a{text-decoration:none}.nav a:hover{color:var(--amber)}
+    .hero{padding:88px 0 64px;text-align:center}.eyebrow{font-size:10px;letter-spacing:.34em;color:var(--amber);font-weight:700}.hero h1{font-size:clamp(40px,9vw,76px);letter-spacing:.14em;margin:18px 0 14px}.hero p{color:#c3beb5;line-height:1.9;font-size:14px;margin:0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin:0 0 18px}.section-head h2{font-size:14px;letter-spacing:.2em;margin:0}.section-head span{font-size:10px;letter-spacing:.2em;color:var(--muted)}.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-bottom:86px}.card{display:flex;flex-direction:column;min-height:330px;background:linear-gradient(145deg,#191a1a,#101112);border:1px solid var(--line);text-decoration:none;overflow:hidden;transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-4px);border-color:var(--amber)}.visual{height:196px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 115%,#44403a 0,#1a1b1c 43%,#0b0c0d 76%)}.visual:before{content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:38%;border-radius:50% 50% 0 0 / 25% 25% 0 0;transform:perspective(150px) rotateX(8deg);background:linear-gradient(180deg,#414347,#17191b 48%,#08090a);box-shadow:0 -2px 30px #d49a5233}.visual:after{content:"";position:absolute;left:16%;right:16%;bottom:33%;height:2px;background:linear-gradient(90deg,transparent,#ffcf89,transparent);box-shadow:0 0 17px 3px #d49a5255;transform:rotate(-4deg)}.visual.second{background:radial-gradient(ellipse at 52% 52%,#59432a 0,#20201f 30%,#0b0c0d 75%)}.visual.second:before{left:28%;right:28%;bottom:19%;height:58%;border-radius:50%;background:radial-gradient(ellipse,#ffcf8a 0,#d49a52 3%,#674722 10%,#171819 50%,transparent 70%);box-shadow:none}.visual.second:after{left:0;right:0;bottom:50%;height:1px;transform:none}.visual-label{position:absolute;z-index:1;left:18px;top:16px;font-size:9px;letter-spacing:.24em;color:#e8c18f}.card-body{padding:20px;display:flex;flex:1;flex-direction:column}.card h3{font-size:19px;letter-spacing:.08em;margin:0 0 9px}.card p{font-size:12px;line-height:1.8;color:#b3afa8;margin:0 0 18px}.card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ffffff16;padding-top:14px;color:var(--amber);font-size:10px;letter-spacing:.16em}.arrow{font-size:17px}
+    footer{border-top:1px solid #ffffff18;padding:26px 0 34px;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--muted);font-size:10px;letter-spacing:.1em}.social{display:flex;gap:18px}.social a{text-decoration:none}.social a:hover{color:var(--amber)}
+    @media(max-width:640px){.wrap{padding:0 18px}header{height:66px}.nav{gap:14px;font-size:11px}.hero{padding:68px 0 48px}.hero p{font-size:13px}.games{grid-template-columns:1fr;gap:14px;padding-bottom:64px}.card{min-height:0}.visual{height:190px}.card-body{padding:18px}.card h3{font-size:18px}.section-head span{font-size:9px}footer{align-items:flex-start;flex-direction:column}.social{gap:16px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="wordmark" href="./" aria-label="HENRY GAMES トップ">HENRY <span>GAMES</span></a>
+      <nav class="nav" aria-label="メインナビゲーション"><a href="#games">GAMES</a><a href="https://henrycorporation.com/" target="_blank" rel="noopener noreferrer">HENRY</a></nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">DRIVE THE DETAIL</div>
+        <h1>HENRY GAMES</h1>
+        <p>遊びながら、クルマの新しい魅力に出会う。<br>HENRYがお届けするゲームコレクション。</p>
+      </section>
+      <section id="games" aria-labelledby="games-title">
+        <div class="section-head"><h2 id="games-title">GAME SELECT</h2><span>SELECT YOUR GAME</span></div>
+        <div class="games">
+          <a class="card" href="./games/detailing-master/" aria-label="HENRY DETAILING MASTERをプレイ">
+            <div class="visual"><span class="visual-label">POLISHING ZONE / STAGE 01</span></div>
+            <div class="card-body"><h3>HENRY DETAILING MASTER</h3><p>研磨機を操り、障害物を避けて艶をつなぐ。圧力と熱をコントロールして、最高の仕上がりを目指そう。</p><div class="card-foot"><span>PLAY GAME</span><span class="arrow">→</span></div></div>
+          </a>
+          <a class="card" href="https://transparent66-oss.github.io/fast/" target="_blank" rel="noopener noreferrer" aria-label="コーティング選びの正解をプレイ">
+            <div class="visual second"><span class="visual-label">HENRY ORIGINAL GAME</span></div>
+            <div class="card-body"><h3>コーティング選びの正解</h3><p>全10問の4択クイズで、愛車に合うコーティングの選び方を学ぼう。正解だけでなく、選んだ理由も解説します。</p><div class="card-foot"><span>PLAY GAME</span><span class="arrow">→</span></div></div>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer><span>© HENRY CORPORATION</span><div class="social"><a href="https://henrycorporation.com/" target="_blank" rel="noopener noreferrer">OFFICIAL SITE ↗</a><a href="https://www.instagram.com/henry_corporation" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a></div></footer>
+  </div>
+</body>
+</html>
