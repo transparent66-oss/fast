@@ -87,8 +87,8 @@
     answered = false;
     const question = window.quizQuestions[questionIndex];
     const number = questionIndex + 1;
-    $('stage-label').innerHTML = `STAGE ${String(Math.ceil(number / 2)).padStart(2, '0')} <span class="eyebrow-jp">${question.stage}</span>`;
-    $('question-count').innerHTML = `${String(number).padStart(2, '0')} <small>/ ${window.quizQuestions.length}</small>`;
+    $('stage-label').textContent = `第${Math.ceil(number / 2)}章　${question.stage}`;
+    $('question-count').innerHTML = `第${number}問 <small>/ ${window.quizQuestions.length}問</small>`;
     $('scenario').textContent = question.scenario;
     $('question-title').textContent = question.title;
     $('progress-fill').style.width = `${(number / window.quizQuestions.length) * 100}%`;
@@ -130,7 +130,7 @@
     const picked = timedOut ? question.choices[question.answer] : question.choices[selectedIndex];
     $('feedback-status').textContent = timedOut ? '時間切れ！' : isCorrect ? 'その通り！' : '考え方をチェック';
     $('feedback-status').className = isCorrect ? 'status-correct' : 'status-review';
-    $('feedback-note').textContent = timedOut ? 'TIME UP' : isCorrect ? 'BEST CHOICE' : 'LEARN THE POINT';
+    $('feedback-note').textContent = timedOut ? '時間切れ' : isCorrect ? '正解' : '解説を確認';
     $('answer-feedback').textContent = timedOut ? `時間内に選べませんでした。正解は「${picked.text}」です。` : picked.feedback;
     $('explanation-text').textContent = timedOut ? `あせらず次へ進みましょう。${picked.explanation}` : picked.explanation;
     $('feedback').classList.toggle('feedback-timeout', timedOut);
