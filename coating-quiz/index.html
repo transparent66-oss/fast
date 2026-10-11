@@ -2,76 +2,48 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080909">
-  <meta name="description" content="愛車に合うコーティング選びを、10問のクイズで学ぶゲーム。">
-  <title>コーティング選びの正解 | WHITE HOUSE</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="questions.js" defer></script>
-  <script src="app.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090a0b">
+  <meta name="description" content="HENRY GAMES — HENRYが届ける、車とディテーリングのゲーム。">
+  <title>HENRY GAMES</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090a0b;--panel:#141618;--line:#33312d;--text:#f0ede6;--muted:#a7a39c;--amber:#d49a52}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 2%,#252322 0,#111213 34rem,var(--bg) 72rem);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;min-height:100vh}
+    a{color:inherit}.wrap{max-width:1100px;margin:auto;padding:0 22px}header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}.wordmark{font-size:14px;letter-spacing:.28em;font-weight:800;text-decoration:none}.wordmark span{color:var(--amber)}.nav{display:flex;gap:22px;font-size:12px;color:#d0ccc4}.nav a{text-decoration:none}.nav a:hover{color:var(--amber)}
+    .hero{padding:88px 0 64px;text-align:center}.eyebrow{font-size:10px;letter-spacing:.34em;color:var(--amber);font-weight:700}.hero h1{font-size:clamp(40px,9vw,76px);letter-spacing:.14em;margin:18px 0 14px}.hero p{color:#c3beb5;line-height:1.9;font-size:14px;margin:0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin:0 0 18px}.section-head h2{font-size:14px;letter-spacing:.2em;margin:0}.section-head span{font-size:10px;letter-spacing:.2em;color:var(--muted)}.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-bottom:86px}.card{display:flex;flex-direction:column;min-height:330px;background:linear-gradient(145deg,#191a1a,#101112);border:1px solid var(--line);text-decoration:none;overflow:hidden;transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-4px);border-color:var(--amber)}.visual{height:196px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 115%,#44403a 0,#1a1b1c 43%,#0b0c0d 76%)}.visual:before{content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:38%;border-radius:50% 50% 0 0 / 25% 25% 0 0;transform:perspective(150px) rotateX(8deg);background:linear-gradient(180deg,#414347,#17191b 48%,#08090a);box-shadow:0 -2px 30px #d49a5233}.visual:after{content:"";position:absolute;left:16%;right:16%;bottom:33%;height:2px;background:linear-gradient(90deg,transparent,#ffcf89,transparent);box-shadow:0 0 17px 3px #d49a5255;transform:rotate(-4deg)}.visual.second{background:radial-gradient(ellipse at 52% 52%,#59432a 0,#20201f 30%,#0b0c0d 75%)}.visual.second:before{left:28%;right:28%;bottom:19%;height:58%;border-radius:50%;background:radial-gradient(ellipse,#ffcf8a 0,#d49a52 3%,#674722 10%,#171819 50%,transparent 70%);box-shadow:none}.visual.second:after{left:0;right:0;bottom:50%;height:1px;transform:none}.visual-label{position:absolute;z-index:1;left:18px;top:16px;font-size:9px;letter-spacing:.24em;color:#e8c18f}.card-body{padding:20px;display:flex;flex:1;flex-direction:column}.card h3{font-size:19px;letter-spacing:.08em;margin:0 0 9px}.card p{font-size:12px;line-height:1.8;color:#b3afa8;margin:0 0 18px}.card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ffffff16;padding-top:14px;color:var(--amber);font-size:10px;letter-spacing:.16em}.arrow{font-size:17px}
+    footer{border-top:1px solid #ffffff18;padding:26px 0 34px;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--muted);font-size:10px;letter-spacing:.1em}.social{display:flex;gap:18px}.social a{text-decoration:none}.social a:hover{color:var(--amber)}
+    @media(max-width:640px){.wrap{padding:0 18px}header{height:66px}.nav{gap:14px;font-size:11px}.hero{padding:68px 0 48px}.hero p{font-size:13px}.games{grid-template-columns:1fr;gap:14px;padding-bottom:64px}.card{min-height:0}.visual{height:190px}.card-body{padding:18px}.card h3{font-size:18px}.section-head span{font-size:9px}footer{align-items:flex-start;flex-direction:column}.social{gap:16px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+  </style>
 </head>
 <body>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
-  <main class="shell">
-    <header class="masthead">
-      <a class="brand" href="#top" aria-label="WHITE HOUSE トップ">
-        <span class="brand-mark" aria-hidden="true">W</span>
-        <span class="brand-name">WHITE HOUSE<small>CAR CARE • KNOWLEDGE</small></span>
-      </a>
-      <span class="edition">SPECIAL EDITION <i></i> VOL. 01</span>
+  <div class="wrap">
+    <header>
+      <a class="wordmark" href="./" aria-label="HENRY GAMES トップ">HENRY <span>GAMES</span></a>
+      <nav class="nav" aria-label="メインナビゲーション"><a href="#games">GAMES</a><a href="https://henrycorporation.com/" target="_blank" rel="noopener noreferrer">HENRY</a></nav>
     </header>
-
-    <section id="start-screen" class="screen hero" aria-labelledby="game-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> YOUR CAR, YOUR RIGHT CHOICE</p>
-        <h1 id="game-title">コーティング選びの<span>正解</span></h1>
-        <p class="hero-lead">そのコーティング、本当にあなたの車に合っていますか？</p>
-        <p class="hero-description">駐車環境、塗装の状態、日々のお手入れ。<br>10のシーンを通して、自分に合う選び方を見つけよう。</p>
-        <div class="hero-meta"><span>全10問</span><b></b><span>約3〜5分</span><b></b><span>4択クイズ</span></div>
-        <button id="start-button" class="button button-primary">ゲームをはじめる <span aria-hidden="true">↗</span></button>
-        <p class="fine-print">正解を覚えるより、選ぶ理由を考えてみましょう。</p>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-glow"></div><div class="art-ring ring-a"></div><div class="art-ring ring-b"></div>
-        <div class="car-illustration"><div class="car-top"></div><div class="car-body"></div><div class="car-glass"></div><div class="car-shine"></div><div class="wheel wheel-left"></div><div class="wheel wheel-right"></div></div>
-        <div class="art-caption"><span>PAINT CARE</span><span>EST. FOR YOUR DRIVE</span></div>
-      </div>
-    </section>
-
-    <section id="quiz-screen" class="screen quiz-screen" aria-live="polite" hidden>
-      <div class="quiz-topline"><span id="stage-label" class="eyebrow">STAGE 01 <span class="eyebrow-jp">ディーラーコーティング</span></span><span id="question-count" class="question-count">01 <small>/ 10</small></span></div>
-      <div class="progress-track" role="progressbar" aria-label="クイズの進行状況" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><span id="progress-fill"></span></div>
-      <div class="question-card">
-        <p id="scenario" class="scenario"></p>
-        <h2 id="question-title" class="question-title"></h2>
-        <div id="choices" class="choices"></div>
-        <div id="feedback" class="feedback" hidden>
-          <div class="feedback-heading"><span id="feedback-status"></span><span id="feedback-note"></span></div>
-          <p id="answer-feedback" class="answer-feedback"></p>
-          <div class="explanation"><span class="explanation-label">LEARN MORE</span><p id="explanation-text"></p></div>
-          <button id="next-button" class="button button-primary next-button">次の問題へ <span aria-hidden="true">→</span></button>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">DRIVE THE DETAIL</div>
+        <h1>HENRY GAMES</h1>
+        <p>遊びながら、クルマの新しい魅力に出会う。<br>HENRYがお届けするゲームコレクション。</p>
+      </section>
+      <section id="games" aria-labelledby="games-title">
+        <div class="section-head"><h2 id="games-title">GAME SELECT</h2><span>SELECT YOUR GAME</span></div>
+        <div class="games">
+          <a class="card" href="./ディテーリングマスター/" aria-label="HENRY DETAILING MASTERをプレイ">
+            <div class="visual"><span class="visual-label">POLISHING ZONE / STAGE 01</span></div>
+            <div class="card-body"><h3>HENRY DETAILING MASTER</h3><p>研磨機を操り、障害物を避けて艶をつなぐ。圧力と熱をコントロールして、最高の仕上がりを目指そう。</p><div class="card-foot"><span>PLAY GAME</span><span class="arrow">→</span></div></div>
+          </a>
+          <a class="card" href="./コーティングクイズ/" aria-label="コーティング選びの正解をプレイ">
+            <div class="visual second"><span class="visual-label">HENRY ORIGINAL GAME</span></div>
+            <div class="card-body"><h3>コーティング選びの正解</h3><p>全10問の4択クイズで、愛車に合うコーティングの選び方を学ぼう。正解だけでなく、選んだ理由も解説します。</p><div class="card-foot"><span>PLAY GAME</span><span class="arrow">→</span></div></div>
+          </a>
         </div>
-      </div>
-      <div class="quiz-footer"><span>WHITE HOUSE <i>·</i> COATING GUIDE</span><span>自分のペースで考えてみよう</span></div>
-    </section>
-
-    <section id="result-screen" class="screen result-screen" aria-labelledby="result-heading" hidden>
-      <p class="eyebrow"><span></span> YOUR COATING IQ</p>
-      <h2 id="result-heading">QUIZ <span>COMPLETE</span></h2>
-      <div class="result-main">
-        <div class="score-wrap"><span class="score-label">YOUR SCORE</span><div class="score"><span id="score-value">0</span><small>/ 10</small></div><span id="rank-name" class="rank-name"></span></div>
-        <div class="result-message"><p id="rank-description"></p><div class="result-divider"></div><span class="summary-label">あなたの回答傾向</span><p id="tendency-text" class="tendency-text"></p></div>
-      </div>
-      <div class="takeaways"><span class="explanation-label">TAKEAWAY</span><p>コーティングは「どこで・何を」だけでなく、<strong>なぜ必要か、どう維持するか</strong>まで考えると選びやすくなります。</p></div>
-      <button id="replay-button" class="button button-primary">もう一度プレイ <span aria-hidden="true">↻</span></button>
-      <p class="disclaimer">本ゲームは一般的な選び方の学習を目的としています。車種・塗装状態・製品・施工条件により結果は異なります。具体的な性能や保証条件は、各メーカーの最新資料と施工店にご確認ください。</p>
-    </section>
-
-    <footer class="site-footer"><span>© WHITE HOUSE</span><span>KNOW YOUR CAR. CHOOSE WITH CARE.</span></footer>
-  </main>
+      </section>
+    </main>
+    <footer><span>© HENRY CORPORATION</span><div class="social"><a href="https://henrycorporation.com/" target="_blank" rel="noopener noreferrer">OFFICIAL SITE ↗</a><a href="https://www.instagram.com/henry_corporation" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a></div></footer>
+  </div>
 </body>
 </html>
